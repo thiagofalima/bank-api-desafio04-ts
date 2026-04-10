@@ -71,3 +71,23 @@ test("Deve exibir uma mensagem de erro caso não informe o email", () => {
     expect(mockResponse.state.status).toBe(400)
     expect(mockResponse.state.json).toMatchObject({message: "Bad Request"})
 })
+
+
+test("Deve deletar um usuário", () => {
+    // Usando operador partial para poder moclar o UserService mesmo incompleto
+    const mockUserService: Partial<UserService> = {
+        deleteUser: jest.fn()
+    } 
+    const userController = new UserController(mockUserService as UserService)
+    
+    const mockRequest = {
+        body: {
+            name: "Letícia",
+            email: "let@senai.com"
+        }
+    } as Request
+    const mockResponse = makeMockResponse()
+    userController.deleteUser(mockRequest, mockResponse)
+    expect(mockResponse.state.status).toBe(200)
+    expect(mockResponse.state.json).toMatchObject({message: "Usuário deletado"})
+})
