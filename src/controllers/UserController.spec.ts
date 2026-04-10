@@ -22,3 +22,21 @@ test("Deve adicionar um novo usuário", () => {
     expect(mockResponse.state.status).toBe(201)
     expect(mockResponse.state.json).toMatchObject({message: "User created!"})
 })
+
+test("Deve exibir uma mensagem de erro caso não informe o name", () => {
+    // Usando operador partial para poder moclar o UserService mesmo incompleto
+    const mockUserService: Partial<UserService> = {
+        createUser: jest.fn()
+    } 
+    const userController = new UserController(mockUserService as UserService)
+    
+    const mockRequest = {
+        body: {
+            email: "let@senai.com"
+        }
+    } as Request
+    const mockResponse = makeMockResponse()
+    userController.createUser(mockRequest, mockResponse)
+    expect(mockResponse.state.status).toBe(400)
+    expect(mockResponse.state.json).toMatchObject({message: "Bad Request"})
+})
