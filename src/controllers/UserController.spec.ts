@@ -40,3 +40,16 @@ test("Deve exibir uma mensagem de erro caso não informe o name", () => {
     expect(mockResponse.state.status).toBe(400)
     expect(mockResponse.state.json).toMatchObject({message: "Bad Request"})
 })
+
+test("Dele chamar a fução getAllUsers",  () => {
+    // Usando operador partial para poder moclar o UserService mesmo incompleto
+    const mockUserService: Partial<UserService> = {
+        getAllUsers: jest.fn()
+
+    } 
+    const userController = new UserController(mockUserService as UserService)
+    const mockRequest = {} as Request
+    const mockResponse = makeMockResponse()
+    userController.getAllUsers(mockRequest, mockResponse)
+    expect(mockResponse.state.status).toBe(200)
+})

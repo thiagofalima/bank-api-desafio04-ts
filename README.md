@@ -1,7 +1,7 @@
 #### Desafios
 [ ] Incluir os testes unitários pendentes no controller
   - Verificar a resposta de erro caso o usuário não informe o name ✅
-  - Verificar se a função getAllusers está sendo chamada 
+  - Verificar se a função getAllusers está sendo chamada ✅
 
 [ ] Implementa uma validação para o campo email
   - O usuário nâo pode ser criado caso não informe o email ✅
