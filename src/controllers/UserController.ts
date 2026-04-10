@@ -11,7 +11,7 @@ export class UserController{
 
     createUser = (request: Request, response: Response) => {
         const user = request.body;
-        if(!user.name){
+        if(!user.name || !user.email){
             return response.status(400).json({"message": "Bad Request"});
         }
         this.userService.createUser(user.name, user.email)

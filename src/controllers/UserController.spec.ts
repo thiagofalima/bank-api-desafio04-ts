@@ -53,3 +53,21 @@ test("Dele chamar a fução getAllUsers",  () => {
     userController.getAllUsers(mockRequest, mockResponse)
     expect(mockResponse.state.status).toBe(200)
 })
+
+test("Deve exibir uma mensagem de erro caso não informe o email", () => {
+    // Usando operador partial para poder moclar o UserService mesmo incompleto
+    const mockUserService: Partial<UserService> = {
+        createUser: jest.fn()
+    } 
+    const userController = new UserController(mockUserService as UserService)
+    
+    const mockRequest = {
+        body: {
+            name: "Letícia"
+        }
+    } as Request
+    const mockResponse = makeMockResponse()
+    userController.createUser(mockRequest, mockResponse)
+    expect(mockResponse.state.status).toBe(400)
+    expect(mockResponse.state.json).toMatchObject({message: "Bad Request"})
+})
