@@ -6,10 +6,10 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
+    "emitDecoratorMetadata": true,  // ajuste de posição
+    "experimentalDecorators": true, // ajuste de posição
     "outDir": "./build"
   },
   "include": ["src"],
-  "emitDecoratorMetadata": true,
-  "experimentalDecorators": true,
   "allowJs": true
 }
