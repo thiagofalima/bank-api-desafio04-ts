@@ -17,7 +17,6 @@ export class User {
     password: string
 
     constructor(
-        user_id: string,
         name: string,
         email: string,
         password: string
