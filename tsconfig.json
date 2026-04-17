@@ -8,5 +8,7 @@
     "skipLibCheck": true,
     "outDir": "./build"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "emitDecoratorMetadata": true,
+  "experimentalDecorators": true
 }
