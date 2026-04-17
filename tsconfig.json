@@ -10,5 +10,6 @@
   },
   "include": ["src"],
   "emitDecoratorMetadata": true,
-  "experimentalDecorators": true
+  "experimentalDecorators": true,
+  "allowJs": true
 }
