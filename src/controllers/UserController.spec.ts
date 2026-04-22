@@ -19,11 +19,10 @@ jest.mock("../services/UserService", () => {
     }),
   };
 });
+const userController = new UserController(mockUserService as UserService);
 
 test("Deve adicionar um novo usuário", () => {
   // Usando operador partial para poder moclar o UserService mesmo incompleto
-  const userController = new UserController(mockUserService as UserService);
-
   const mockRequest = {
     body: {
       name: "Letícia",
@@ -39,8 +38,6 @@ test("Deve adicionar um novo usuário", () => {
 
 test("Deve exibir uma mensagem de erro caso não informe o name", () => {
   // Usando operador partial para poder moclar o UserService mesmo incompleto
-  const userController = new UserController(mockUserService as UserService);
-
   const mockRequest = {
     body: {
       name: "",
@@ -56,8 +53,6 @@ test("Deve exibir uma mensagem de erro caso não informe o name", () => {
 
 test("Deve exibir uma mensagem de erro caso não informe o email", () => {
   // Usando operador partial para poder moclar o UserService mesmo incompleto
-  const userController = new UserController(mockUserService as UserService);
-
   const mockRequest = {
     body: {
       name: "Letícia",
@@ -73,8 +68,6 @@ test("Deve exibir uma mensagem de erro caso não informe o email", () => {
 
 test("Deve exibir uma mensagem de erro caso não informe a senha", () => {
   // Usando operador partial para poder moclar o UserService mesmo incompleto
-  const userController = new UserController(mockUserService as UserService);
-
   const mockRequest = {
     body: {
       name: "Letícia",
@@ -90,7 +83,6 @@ test("Deve exibir uma mensagem de erro caso não informe a senha", () => {
 
 test("Deve deletar um usuário", () => {
   // Usando operador partial para poder moclar o UserService mesmo incompleto
-  const userController = new UserController(mockUserService as UserService);
 
   const mockRequest = {
     body: {
@@ -105,3 +97,16 @@ test("Deve deletar um usuário", () => {
     message: "Usuário deletado",
   });
 });
+
+test("Deve retornar o uruário com o uerId informado", () => {
+  const mockRequest = {
+    body: {
+      userId: '123456'
+    }
+  } as Request
+  
+  const mockResponse = makeMockResponse();
+  userController.getUser(mockRequest, mockResponse)
+  expect(mockUserService.getUser).toHaveBeenCalledWith("12345")
+  expect(mockResponse.state.status).toBe(200)
+})
