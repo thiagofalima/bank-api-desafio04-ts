@@ -5,11 +5,12 @@ interface MockManagerArgs{
 }
 
 export const getMockEntityManager = async ({
-    saveReturn = undefined
+    saveReturn = undefined,
+    findOneReturn = undefined
 }: MockManagerArgs): Promise<EntityManager> => {
     const manager: Partial<EntityManager> = {}
 
-    manager.save = jest.fn().mockImplementation(() => Promise.resolve())
-
+    manager.save = jest.fn().mockImplementation(() => Promise.resolve(saveReturn))
+    manager.findOne = jest.fn().mockImplementation(() => Promise.resolve())
     return manager as EntityManager
 }
