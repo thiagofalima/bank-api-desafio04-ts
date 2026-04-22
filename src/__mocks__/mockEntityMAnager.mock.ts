@@ -1,7 +1,8 @@
 import { EntityManager } from "typeorm";
     
 interface MockManagerArgs{
-    saveReturn?: object | [object] 
+    saveReturn?: object | [object] ,
+    findOneReturn?: object | [object]
 }
 
 export const getMockEntityManager = async ({

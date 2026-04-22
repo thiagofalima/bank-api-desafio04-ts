@@ -5,6 +5,6 @@ export const router = Router();
 const userController = new UserController();
 
 router.post("/user", userController.createUser); // Nao precisa de parametro aqui, ele entende por default
-router.get("/user", userController.getAllUsers);
+router.get("/user", userController.getUser);
 router.delete('/user', userController.deleteUser);
 

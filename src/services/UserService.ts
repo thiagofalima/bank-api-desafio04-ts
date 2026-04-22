@@ -2,6 +2,12 @@ import { AppDataSource } from "../database";
 import { User } from "../entities/User";
 import { UserRepository } from "../repositories/UserRepository";
 
+try {
+    AppDataSource.initialize()
+    console.log("Data Source has been initialized!")
+} catch (error) {
+    console.error("Error during Data Source initialization", error)
+}
 
 export class UserService {
   private userRepository: UserRepository;
@@ -20,6 +26,10 @@ export class UserService {
   getUser = () => {
       return null
   };
+
+  deleteUser = () => {
+    return null
+  }
 
 }
 

@@ -9,7 +9,6 @@ test("Deve cadastrar um novo usuário no banco de dados", async () => {
         name: "test",
         email: "test@test.com",
         password: "12345"
-        
     }
     
     const managerMock = await getMockEntityManager({
@@ -17,13 +16,12 @@ test("Deve cadastrar um novo usuário no banco de dados", async () => {
     })
     let userRepository = new UserRepository(managerMock as EntityManager)
     const response = await userRepository.createUser(mockUser)
-    expect(managerMock.save({})).toHaveBeenCalled()
+    expect(managerMock.save).toHaveBeenCalled()
     expect(response).toMatchObject({
-        id_user: "12345",
+        user_id: "12345",
         name: "test",
         email: "test@test.com",
         password: "12345"
-
     })
 
 })
